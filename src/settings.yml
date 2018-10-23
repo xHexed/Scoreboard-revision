@@ -1,0 +1,78 @@
+#  ____  ____  ____  ____  _____ ____  ____  ____  ____  ____
+# / ___\/   _\/  _ \/  __\/  __//  _ \/  _ \/  _ \/  __\/  _ \
+# |    \|  /  | / \||  \/||  \  | | //| / \|| / \||  \/|| | \|
+# \___ ||  \_ | \_/||    /|  /_ | |_\\| \_/|| |-|||    /| |_/|
+# \____/\____/\____/\_/\_\\____\\____/\____/\_/ \|\_/\_\\____/
+#
+# Scoreboard-r by Rien Bijl
+# rep: github : RienBijl/Scoreboard
+# v: 1.0
+
+settings:
+  # Safe-mode determines if scoreboard is synchronized with the server (true) or asynchronized (false)
+  # Synchronized (safe-mode: true) is more stable and robust
+  # Asynchronized (safe-mode: false) is more faster but can cause strange problems in some cases
+  safe-mode: true
+  # If the server version is 1.13 or higher, enable longline.
+  # true: you can use 128 characters per line (1.13 and up)
+  # false: you can use 32 characters per line (1.12 and down)
+  longline: false
+
+board:
+  title:
+    interval: 3
+    liner:
+      - '&4> &c&lScoreboard &4<'
+      - '&4> &c&lcoreboar &4<'
+      - '&4> &c&loreboa &4<'
+      - '&4> &c&leb &4<'
+      - '&4> &4<'
+      - '&4> &c&leb &4<'
+      - '&4> &c&loreboa &4<'
+      - '&4> &c&lcoreboar &4<'
+      - '&4> &4&lScoreboard &4<'
+      - '&4> &c&lScoreboard &4<'
+      - '&4> &4&lScoreboard &4<'
+      - '&4> &c&lScoreboard &4<'
+      - '&4> &4&lScoreboard &4<'
+      - '&4> &c&lScoreboard &4<'
+      - '&4> &c&lScoreboard &4<'
+      - '&4> &c&lScoreboard &4<'
+  rows:
+    1:
+      interval: 40
+      liner:
+      - '&cPlayer name:'
+    2:
+      interval: 40
+      liner:
+      - '%player_name%'
+    3:
+      interval: 1
+      liner:
+      - '3 3 5'
+      - '3 2 4'
+    4:
+      interval: 1
+      liner:
+      - '4 3 5'
+      - '4 2 4'
+    5:
+      interval: 1
+      liner:
+      - '5 3 5'
+      - '5 2 4'
+    6:
+      interval: 1
+      liner:
+      - '567358296759278356y727293757'
+      - '7289497375347567345745873953'
+      - '5967395725729785927375297732'
+    7:
+      interval: 1
+      liner:
+      - 'Damn I can make long sentences'
+    8:
+      interval: 1
+      liner:
+      - 'AN EXAMPLE OF A SERIOUSLY LONG SENTENCE THAT JUST'
