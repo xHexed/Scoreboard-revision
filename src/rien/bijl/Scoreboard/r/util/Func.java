@@ -23,4 +23,15 @@ public class Func {
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 
+    public static boolean perm(Player p, String perm)
+    {
+        if(p.hasPermission("scoreboard." + perm))
+        {
+            return true;
+        } else{
+            smsg(p, "You lack the permission &cscoreboard." + perm);
+            return false;
+        }
+    }
+
 }

@@ -20,9 +20,13 @@ public class App extends BukkitRunnable {
     private ArrayList<Row> rows = new ArrayList<Row>();
     private ArrayList<Player> children = new ArrayList<Player>();
     public ArrayList<ScoreboardHolder> holders = new ArrayList<ScoreboardHolder>();
+    public static boolean longline = false;
 
     public App()
     {
+        // conf
+        App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline");
+
         //Events
         Main.instance.getServer().getPluginManager().registerEvents(new EIntergrate(this), Main.instance);
         Main.instance.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Main.instance);
@@ -32,14 +36,14 @@ public class App extends BukkitRunnable {
         int interval = ConfigControl.get().gc("settings").getInt("board.title.interval");
         title = new Row((ArrayList<String>) lines, interval);
 
-        for(int i = 1; i<50; i++)
+        for(int i = 1; i<200; i++)
         {
             ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection("board.rows." + i);
             if(null != section)
             {
                 Row row = new Row((ArrayList<String>)section.getStringList("liner"), section.getInt("interval"));
                 rows.add(row);
-            } else break;
+            }
         }
 
         // Register already joined players

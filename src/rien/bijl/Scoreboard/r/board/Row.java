@@ -14,7 +14,7 @@ public class Row {
     private int interval;
     private ArrayList<String> lines;
     private String line;
-    private int current = 0;
+    private int current = 1;
 
     // Rules
     public boolean static_line = false;
@@ -37,7 +37,8 @@ public class Row {
             else
                 line = Func.color(lines.get(0));
 
-        update();
+
+        line = Func.color(lines.get(0));
     }
 
     private int count = 0;
@@ -57,6 +58,7 @@ public class Row {
             count++;
         }
     }
+
 
     public String getLine() { return this.line; }
 

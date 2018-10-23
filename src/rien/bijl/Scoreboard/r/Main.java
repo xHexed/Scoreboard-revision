@@ -15,7 +15,6 @@ public class Main extends JavaPlugin {
     public static boolean papi = false;
     public static App app;
     public static Scoreboard empty;
-    public static boolean longline = false;
 
 
     public void onEnable() {
@@ -23,7 +22,6 @@ public class Main extends JavaPlugin {
         ConfigControl.get().createDataFiles();
 
         Main.empty = getServer().getScoreboardManager().getNewScoreboard();
-        Main.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline");
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
         {

@@ -12,7 +12,7 @@ settings:
   # Safe-mode determines if scoreboard is synchronized with the server (true) or asynchronized (false)
   # Synchronized (safe-mode: true) is more stable and robust
   # Asynchronized (safe-mode: false) is more faster but can cause strange problems in some cases
-  safe-mode: true
+  safe-mode: false
   # If the server version is 1.13 or higher, enable longline.
   # true: you can use 128 characters per line (1.13 and up)
   # false: you can use 32 characters per line (1.12 and down)
@@ -22,6 +22,7 @@ board:
   title:
     interval: 3
     liner:
+      - '&4> &c&lScoreboard-r &4<'
       - '&4> &c&lScoreboard &4<'
       - '&4> &c&lcoreboar &4<'
       - '&4> &c&loreboa &4<'
@@ -31,48 +32,68 @@ board:
       - '&4> &c&loreboa &4<'
       - '&4> &c&lcoreboar &4<'
       - '&4> &4&lScoreboard &4<'
-      - '&4> &c&lScoreboard &4<'
-      - '&4> &4&lScoreboard &4<'
-      - '&4> &c&lScoreboard &4<'
-      - '&4> &4&lScoreboard &4<'
-      - '&4> &c&lScoreboard &4<'
-      - '&4> &c&lScoreboard &4<'
-      - '&4> &c&lScoreboard &4<'
+      - '&4> &4&lScoreboard-r &4<'
+      - '&4> &c&lScoreboard-r &4<'
+      - '&4> &4&lScoreboard-r &4<'
+      - '&4> &c&lScoreboard-r &4<'
+      - '&4> &4&lScoreboard-r &4<'
+      - '&4> &c&lScoreboard-r &4<'
+      - '&4> &c&lScoreboard-r &4<'
+      - '&4> &c&lScoreboard-r &4<'
   rows:
     1:
-      interval: 40
+      interval: 5
+      liner:
+      - '&c------------------------'
+      - '&4------------------------'
+    2:
+      interval: 80
       liner:
       - '&cPlayer name:'
-    2:
-      interval: 40
+      - '&cAuthor:'
+    3:
+      interval: 80
       liner:
       - '%player_name%'
-    3:
-      interval: 1
-      liner:
-      - '3 3 5'
-      - '3 2 4'
+      - 'HelloitsRien'
     4:
-      interval: 1
+      interval: 80
       liner:
-      - '4 3 5'
-      - '4 2 4'
+      - ''
     5:
-      interval: 1
+      interval: 80
       liner:
-      - '5 3 5'
-      - '5 2 4'
+      - '&cPing:'
     6:
-      interval: 1
+      interval: 5
       liner:
-      - '567358296759278356y727293757'
-      - '7289497375347567345745873953'
-      - '5967395725729785927375297732'
+      - '%player_ping% ms'
     7:
-      interval: 1
+      interval: 80
       liner:
-      - 'Damn I can make long sentences'
-    8:
-      interval: 1
+      - ''
+    '8':
+      interval: 80
       liner:
-      - 'AN EXAMPLE OF A SERIOUSLY LONG SENTENCE THAT JUST'
+      - '&cUptime:'
+    '9':
+      interval: 20
+      liner:
+      - '%server_uptime%'
+    10:
+      interval: 80
+      liner:
+      - ''
+    11:
+      interval: 80
+      liner:
+      - 'This is an awesome plugin'
+    12:
+      interval: 80
+      liner:
+      - 'made by HelloitsRien.'
+    50:
+      interval: 5
+      liner:
+      - '&c------------------------'
+      - '&4------------------------'

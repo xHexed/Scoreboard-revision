@@ -29,7 +29,7 @@ public class CommandManager implements CommandExecutor {
                 Func.msg(player, "Too few arguments!");
                 help(player);
             } else {
-                if(args[0].equalsIgnoreCase("rowhandlers"))
+                if(args[0].equalsIgnoreCase("rowhandlers") && Func.perm(player, "rowhandlers"))
                 {
                     Func.msg(player, "Rows are handled in the following way:");
                     int count = 1;
@@ -44,7 +44,7 @@ public class CommandManager implements CommandExecutor {
                         count++;
                     }
 
-                } else if(args[0].equalsIgnoreCase("reload")) {
+                } else if(args[0].equalsIgnoreCase("reload") && Func.perm(player, "reload")) {
 
                     Main.app.cancel();
                     Main.app = null;
@@ -52,9 +52,9 @@ public class CommandManager implements CommandExecutor {
                     ConfigControl.get().reloadConfigs();
 
                     Main.newApp();
+                    Func.smsg(player, "Scoreboard reloaded");
 
-                } else if(args[0].equalsIgnoreCase("toggle")) {
-
+                } else if(args[0].equalsIgnoreCase("toggle") && Func.perm(player, "toggle")) {
                     ScoreboardHolder holder = null;
                     for(ScoreboardHolder h : Main.app.holders)
                         if(h.player == player) holder = h;
