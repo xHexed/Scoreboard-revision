@@ -17,9 +17,9 @@ import java.util.List;
 public class App extends BukkitRunnable {
 
     private Row title;
-    private ArrayList<Row> rows = new ArrayList<Row>();
-    private ArrayList<Player> children = new ArrayList<Player>();
-    public ArrayList<ScoreboardHolder> holders = new ArrayList<ScoreboardHolder>();
+    private ArrayList<Row> rows = new ArrayList<>();
+    private ArrayList<Player> children = new ArrayList<>();
+    public ArrayList<ScoreboardHolder> holders = new ArrayList<>();
     public static boolean longline = false;
     public String board;
     public boolean isdefault = false;
@@ -28,20 +28,20 @@ public class App extends BukkitRunnable {
     {
         // conf
         App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline");
-        board = board;
+        this.board = board;
 
         //Events
         Main.instance.getServer().getPluginManager().registerEvents(new EIntergrate(this), Main.instance);
         Main.instance.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Main.instance);
 
         // Setup title row
-        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board+".title").getStringList("liner");
-        int interval = ConfigControl.get().gc("settings").getInt(board+".title.interval");
+        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board + ".title").getStringList("liner");
+        int interval = ConfigControl.get().gc("settings").getInt(board + ".title.interval");
         title = new Row((ArrayList<String>) lines, interval);
 
         for(int i = 1; i<200; i++)
         {
-            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection(board+".rows." + i);
+            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection(board + ".rows." + i);
             if(null != section)
             {
                 Row row = new Row((ArrayList<String>)section.getStringList("liner"), section.getInt("interval"));
@@ -56,12 +56,12 @@ public class App extends BukkitRunnable {
 
     public ArrayList<Row> getRows()
     {
-        return this.rows;
+        return rows;
     }
 
     public Row getTitle()
     {
-        return this.title;
+        return title;
     }
 
     public void registerHolder(ScoreboardHolder holder)
@@ -86,12 +86,12 @@ public class App extends BukkitRunnable {
     public void run() {
         // Update rows
         title.update();
-        for(Row row : this.rows)
+        for(Row row : rows)
             row.update();
 
 
         // Update scoreboards
-        for(ScoreboardHolder holder : this.holders)
+        for(ScoreboardHolder holder : holders)
             holder.update();
     }
 }
