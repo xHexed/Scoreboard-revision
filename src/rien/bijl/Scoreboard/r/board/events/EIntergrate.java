@@ -21,7 +21,7 @@ public class EIntergrate implements Listener {
     @EventHandler
     public void Intergrate(PlayerJoinEvent e)
     {
-        if(app.isCancelled()) return;
+        if(app.isCancelled() || !app.isdefault) return;
         new ScoreboardHolder(app, e.getPlayer());
     }
 

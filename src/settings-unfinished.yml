@@ -5,8 +5,8 @@
 # \____/\____/\____/\_/\_\\____\\____/\____/\_/ \|\_/\_\\____/
 #
 # Scoreboard-r by Rien Bijl
-# rep: github : RienBijl/Scoreboard-revision
-# v: 1.1 RELEASE
+# rep: github : RienBijl/Scoreboard
+# v: 1.0
 
 settings:
   # Safe-mode determines if scoreboard is synchronized with the server (true) or asynchronized (false)
@@ -18,28 +18,31 @@ settings:
   # false: you can use 32 characters per line (1.12 and down)
   longline: false
 
-board:
+enabled-boards: # Which boards should be loaded, 'board' will automatically be loaded!
+  - 'combat'
+
+'board':
   title:
     interval: 3
     liner:
-      - '&4> &c&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard &4<'
-      - '&4> &c&lcoreboar &4<'
-      - '&4> &c&loreboa &4<'
-      - '&4> &c&leb &4<'
-      - '&4> &4<'
-      - '&4> &c&leb &4<'
-      - '&4> &c&loreboa &4<'
-      - '&4> &c&lcoreboar &4<'
-      - '&4> &4&lScoreboard &4<'
-      - '&4> &4&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard-r &4<'
-      - '&4> &4&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard-r &4<'
-      - '&4> &4&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard-r &4<'
-      - '&4> &c&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard &4<'
+    - '&4> &c&lcoreboar &4<'
+    - '&4> &c&loreboa &4<'
+    - '&4> &c&leb &4<'
+    - '&4> &4<'
+    - '&4> &c&leb &4<'
+    - '&4> &c&loreboa &4<'
+    - '&4> &c&lcoreboar &4<'
+    - '&4> &4&lScoreboard &4<'
+    - '&4> &4&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
+    - '&4> &4&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
+    - '&4> &4&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
+    - '&4> &c&lScoreboard-r &4<'
   rows:
     1:
       interval: 5
@@ -92,6 +95,26 @@ board:
       interval: 80
       liner:
       - 'made by HelloitsRien.'
+    50:
+      interval: 5
+      liner:
+      - '&c------------------------'
+      - '&4------------------------'
+'combat':
+  title:
+    interval: 3
+    liner:
+      - '&4> &c&lCombat &4<'
+  rows:
+    1:
+      interval: 5
+      liner:
+      - '&c------------------------'
+      - '&4------------------------'
+    2:
+      interval: 80
+      liner:
+      - '&cIn combat!:'
     50:
       interval: 5
       liner:

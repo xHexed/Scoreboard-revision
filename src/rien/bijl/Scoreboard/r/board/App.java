@@ -21,24 +21,27 @@ public class App extends BukkitRunnable {
     private ArrayList<Player> children = new ArrayList<Player>();
     public ArrayList<ScoreboardHolder> holders = new ArrayList<ScoreboardHolder>();
     public static boolean longline = false;
+    public String board;
+    public boolean isdefault = false;
 
-    public App()
+    public App(String board)
     {
         // conf
         App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline");
+        board = board;
 
         //Events
         Main.instance.getServer().getPluginManager().registerEvents(new EIntergrate(this), Main.instance);
         Main.instance.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Main.instance);
 
         // Setup title row
-        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection("board.title").getStringList("liner");
-        int interval = ConfigControl.get().gc("settings").getInt("board.title.interval");
+        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board+".title").getStringList("liner");
+        int interval = ConfigControl.get().gc("settings").getInt(board+".title.interval");
         title = new Row((ArrayList<String>) lines, interval);
 
         for(int i = 1; i<200; i++)
         {
-            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection("board.rows." + i);
+            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection(board+".rows." + i);
             if(null != section)
             {
                 Row row = new Row((ArrayList<String>)section.getStringList("liner"), section.getInt("interval"));
@@ -47,8 +50,7 @@ public class App extends BukkitRunnable {
         }
 
         // Register already joined players
-        for(Player player : Main.instance.getServer().getOnlinePlayers())
-            new ScoreboardHolder(this, player);
+        if(board == "board") for(Player player : Main.instance.getServer().getOnlinePlayers()) new ScoreboardHolder(this, player);
 
     }
 

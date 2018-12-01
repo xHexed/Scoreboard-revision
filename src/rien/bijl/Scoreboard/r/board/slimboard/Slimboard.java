@@ -30,7 +30,7 @@ public class Slimboard {
         this.plugin = plugin;
         this.linecount = linecount;
         this.board = this.plugin.getServer().getScoreboardManager().getNewScoreboard();
-        this.objective = this.board.registerNewObjective("Slimboard1", "Slimboard2", "Slimboard3");
+        this.objective = this.board.registerNewObjective("sb1", "sb2");
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         this.objective.setDisplayName("...");
 
