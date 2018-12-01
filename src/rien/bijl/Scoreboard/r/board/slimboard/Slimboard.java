@@ -51,7 +51,11 @@ public class Slimboard {
     public void setTitle(String string)
     {
         if(string == null) string = "";
-        if(Main.papi) string = PlaceholderAPI.setPlaceholders(player, string);
+         // Check if the PAPI plugin is enabled and the string has a placeholder
+         if(Main.papi && org.bukkit.Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") &&
+            PlaceholderAPI.containsPlaceholders(string)) {
+            string = PlaceholderAPI.setPlaceholders(player, string);
+         }
 
         if(cache.containsKey(-1) && cache.get(-1) == string) return;
         if(cache.containsKey(-1)) cache.remove(-1);
