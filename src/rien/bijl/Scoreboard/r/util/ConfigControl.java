@@ -24,7 +24,7 @@ public class ConfigControl {
         return new ConfigControl();
     }
 
-    HashMap<String, FileConfiguration> designations = new HashMap<String, FileConfiguration>();
+    HashMap<String, FileConfiguration> designations = new HashMap<>();
 
     private ConfigControl()
     {
@@ -36,7 +36,7 @@ public class ConfigControl {
     {
 
         if(!Main.instance.getDataFolder().exists())
-            Main.instance.getDataFolder().mkdir();
+            Main.instance.getDataFolder().mkdirs();
 
 
         createConfigFile("settings");
