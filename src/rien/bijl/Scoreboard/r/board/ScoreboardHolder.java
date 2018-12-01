@@ -40,8 +40,13 @@ public class ScoreboardHolder {
         for(Row row : app.getRows())
         {
             String line = row.getLine();
-            if(row.placeholders)
-                if(Main.papi) line = PlaceholderAPI.setPlaceholders(player, line);
+            if(row.placeholders) {
+                // Check if the PAPI plugin is enabled and the string has a placeholder
+                if(Main.papi && org.bukkit.Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") &&
+                   PlaceholderAPI.containsPlaceholders(line)) {
+                    line = PlaceholderAPI.setPlaceholders(player, line);
+                }
+            }
             slim.setLine(count, line);
             count++;
         }
