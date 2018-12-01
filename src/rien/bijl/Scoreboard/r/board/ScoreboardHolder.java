@@ -36,12 +36,12 @@ public class ScoreboardHolder {
         slim.setTitle(app.getTitle().getLine());
 
         int count = 0;
-        HashMap<Integer, String> lines = new HashMap<Integer, String>();
+        HashMap<Integer, String> lines = new HashMap<>();
         for(Row row : app.getRows())
         {
             String line = row.getLine();
             if(row.placeholders)
-                if(Main.papi) line = PlaceholderAPI.setPlaceholders(this.player, line);
+                if(Main.papi) line = PlaceholderAPI.setPlaceholders(player, line);
             slim.setLine(count, line);
             count++;
         }
