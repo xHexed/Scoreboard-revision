@@ -22,7 +22,7 @@ public class Slimboard {
     private Objective objective;
     private int linecount;
 
-    private HashMap<Integer, String> cache = new HashMap<Integer, String>();
+    private HashMap<Integer, String> cache = new HashMap<>();
 
     public Slimboard(Plugin plugin, Player player, int linecount)
     {
@@ -35,7 +35,7 @@ public class Slimboard {
         this.objective.setDisplayName("...");
 
         int score = linecount;
-        for(int i = 0; i<linecount;i++)
+        for(int i = 0; i < linecount;i++)
         {
             Team t = this.board.registerNewTeam(i + "");
             t.addEntry(ChatColor.values()[i] + "");
@@ -51,17 +51,17 @@ public class Slimboard {
     public void setTitle(String string)
     {
         if(string == null) string = "";
-        if(Main.papi) string = PlaceholderAPI.setPlaceholders(this.player, string);
+        if(Main.papi) string = PlaceholderAPI.setPlaceholders(player, string);
 
         if(cache.containsKey(-1) && cache.get(-1) == string) return;
         if(cache.containsKey(-1)) cache.remove(-1);
         cache.put(-1, string);
-        this.objective.setDisplayName(string);
+        objective.setDisplayName(string);
     }
 
     public void setLine(int line, String string)
     {
-        Team t = this.board.getTeam((line) + "");
+        Team t = board.getTeam((line) + "");
         if(string == null) string = "";
 
         if(cache.containsKey(line) && cache.get(line) == string) return;
@@ -99,7 +99,7 @@ public class Slimboard {
     private ArrayList<String> getPartsForShortline(String s)
     {
 
-        ArrayList<String> parts = new ArrayList<String>();
+        ArrayList<String> parts = new ArrayList<>();
 
         if(ChatColor.stripColor(s).length() > 16)
         {
@@ -119,7 +119,7 @@ public class Slimboard {
     private ArrayList<String> getPartsForLongline(String s)
     {
 
-        ArrayList<String> parts = new ArrayList<String>();
+        ArrayList<String> parts = new ArrayList<>();
 
         if(ChatColor.stripColor(s).length() > 64)
         {
@@ -137,7 +137,5 @@ public class Slimboard {
         return parts;
 
     }
-
-
 
 }
