@@ -106,13 +106,13 @@ public class Slimboard {
 
         ArrayList<String> parts = new ArrayList<>();
 
-        if(ChatColor.stripColor(s).length() > 16)
+        if(ChatColor.stripColor(s).length() > 15)
         {
-            parts.add(s.substring(0, 16));
+            parts.add(s.substring(0, 15));
 
-            String s2 = s.substring(16, s.length());
-            if(s2.length() > 16)
-                s2 = s2.substring(0, 16);
+            String s2 = s.substring(15, s.length());
+            if(s2.length() > 15)
+                s2 = s2.substring(0, 15);
             parts.add(s2);
         } else {
             parts.add(s);
