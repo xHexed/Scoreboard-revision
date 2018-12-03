@@ -36,12 +36,17 @@ public class ScoreboardHolder {
         slim.setTitle(app.getTitle().getLine());
 
         int count = 0;
-        HashMap<Integer, String> lines = new HashMap<Integer, String>();
+        HashMap<Integer, String> lines = new HashMap<>();
         for(Row row : app.getRows())
         {
             String line = row.getLine();
-            if(row.placeholders)
-                if(Main.papi) line = PlaceholderAPI.setPlaceholders(this.player, line);
+            if(row.placeholders) {
+                // Check if the PAPI plugin is enabled and the string has a placeholder
+                if(Main.papi && org.bukkit.Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") &&
+                   PlaceholderAPI.containsPlaceholders(line)) {
+                    line = PlaceholderAPI.setPlaceholders(player, line);
+                }
+            }
             slim.setLine(count, line);
             count++;
         }

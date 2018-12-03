@@ -18,16 +18,19 @@ public class Main extends JavaPlugin {
     public static boolean papi = false;
     public static Scoreboard empty;
 
-    public static HashMap<String, App> apps = new HashMap<String, App>();
+    public static HashMap<String, App> apps = new HashMap<>();
 
+    @Override
     public void onEnable() {
-        Main.instance = this;
+        instance = this;
         ConfigControl.get().createDataFiles();
 
-        Main.empty = getServer().getScoreboardManager().getNewScoreboard();
+        empty = getServer().getScoreboardManager().getNewScoreboard();
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
-            Main.papi = true;
+            papi = true;
+        else
+            papi = false;
 
         getCommand("sb").setExecutor(new CommandManager());
 
