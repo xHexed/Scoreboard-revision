@@ -4,6 +4,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import rien.bijl.Scoreboard.r.Main;
+import rien.bijl.Scoreboard.r.Session;
 import rien.bijl.Scoreboard.r.board.events.EDeintergrate;
 import rien.bijl.Scoreboard.r.board.events.EIntergrate;
 import rien.bijl.Scoreboard.r.util.ConfigControl;
@@ -31,8 +32,8 @@ public class App extends BukkitRunnable {
         this.board = board;
 
         //Events
-        Main.instance.getServer().getPluginManager().registerEvents(new EIntergrate(this), Main.instance);
-        Main.instance.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Main.instance);
+        Session.plugin.getServer().getPluginManager().registerEvents(new EIntergrate(this), Session.plugin);
+        Session.plugin.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Session.plugin);
 
         // Setup title row
         List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board + ".title").getStringList("liner");
@@ -50,7 +51,7 @@ public class App extends BukkitRunnable {
         }
 
         // Register already joined players
-        if(board == "board") for(Player player : Main.instance.getServer().getOnlinePlayers()) new ScoreboardHolder(this, player);
+        if(board == "board") for(Player player : Session.plugin.getServer().getOnlinePlayers()) new ScoreboardHolder(this, player);
 
     }
 

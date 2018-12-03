@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.*;
 import rien.bijl.Scoreboard.r.Main;
+import rien.bijl.Scoreboard.r.Session;
 import rien.bijl.Scoreboard.r.board.App;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class Slimboard {
     {
         if(string == null) string = "";
          // Check if the PAPI plugin is enabled and the string has a placeholder
-         if(Main.papi && org.bukkit.Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") &&
+         if(Session.enabled_dependencies.contains(Session.dependencies[0]) && org.bukkit.Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") &&
             PlaceholderAPI.containsPlaceholders(string)) {
             string = PlaceholderAPI.setPlaceholders(player, string);
          }

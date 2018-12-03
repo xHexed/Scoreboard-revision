@@ -4,6 +4,7 @@ package rien.bijl.Scoreboard.r.util;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import rien.bijl.Scoreboard.r.Main;
+import rien.bijl.Scoreboard.r.Session;
 
 import java.io.*;
 import java.util.HashMap;
@@ -35,8 +36,8 @@ public class ConfigControl {
     public void createDataFiles()
     {
 
-        if(!Main.instance.getDataFolder().exists())
-            Main.instance.getDataFolder().mkdirs();
+        if(!Session.plugin.getDataFolder().exists())
+            Session.plugin.getDataFolder().mkdirs();
 
 
         createConfigFile("settings");
@@ -49,7 +50,7 @@ public class ConfigControl {
 
     public void createConfigFile(String name)
     {
-        File f = new File(Main.instance.getDataFolder(), name + ".yml");
+        File f = new File(Session.plugin.getDataFolder(), name + ".yml");
 
         boolean needCopyDefaults = false;
 
