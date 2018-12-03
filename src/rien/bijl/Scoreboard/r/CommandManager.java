@@ -30,16 +30,14 @@ public class CommandManager implements CommandExecutor {
                 Func.msg(player, "Too few arguments!");
                 help(player);
             } else {
-                 if(args[0].equalsIgnoreCase("reload") && Func.perm(player, "reload")) {
-
-                    Main.disolveBoards();
-
-                    ConfigControl.get().reloadConfigs();
-
-                    Main.loadBoards();
-                    Func.smsg(player, "Scoreboard reloaded");
-
-
+                 if(args[0].equalsIgnoreCase("reload")) {
+                    if(Func.perm(player, "reload"))
+                    {
+                        Main.disolveBoards();
+                        ConfigControl.get().reloadConfigs();
+                        Main.loadBoards();
+                        Func.smsg(player, "Scoreboard reloaded");
+                    }
                 } else {
                     Func.msg(player,"Unknown command!");
                     help(player);
