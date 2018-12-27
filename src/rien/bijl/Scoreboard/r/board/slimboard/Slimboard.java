@@ -114,7 +114,6 @@ public class Slimboard {
         String last = ChatColor.getLastColors(s);
         if(last == null)
             return "";
-        System.out.println(last);
         return last;
     }
 

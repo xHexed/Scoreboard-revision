@@ -49,7 +49,7 @@ board:
     2:
       interval: 80
       liner:
-      - '&cPlayer name:'
+      - '&cPlayer:'
       - '&cAuthor:'
     3:
       interval: 80
