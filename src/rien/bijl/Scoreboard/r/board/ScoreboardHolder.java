@@ -48,6 +48,7 @@ public class ScoreboardHolder {
                     line = PlaceholderAPI.setPlaceholders(player, line);
                 }
             }
+            String nowhiteline = (line.replaceAll("&f", "").replaceAll("§f", ""));
             slim.setLine(count, line);
             count++;
         }

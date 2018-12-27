@@ -77,19 +77,35 @@ public class Slimboard {
         ArrayList<String> parts = null;
         if(App.longline) parts = getPartsForLongline(string); else parts = getPartsForShortline(string);
 
-        t.setPrefix(parts.get(0));
-        t.setSuffix(parts.get(1));
+        t.setPrefix(fixAnyIssues(parts.get(0)));
+        t.setSuffix(fixAnyIssues(parts.get(1)));
     }
 
 
     /*
     Parter
      */
+
+    private String fixAnyIssues(String part)
+    {
+        if(App.longline)
+        {
+            return part;
+        } else {
+            if(part.length() > 16)
+            {
+                return part.substring(16);
+            } else {
+                return part;
+            }
+        }
+    }
+
     private String prep(String color)
     {
         ArrayList<String> parts = null;
         if(App.longline) parts = getPartsForLongline(color); else parts = getPartsForShortline(color);
-        return parts.get(0) + "§f" + getLastColor(parts.get(0)) + parts.get(1);
+            return parts.get(0) + "§f" +  getLastColor(parts.get(0)) + parts.get(1);
 
     }
 
@@ -98,6 +114,7 @@ public class Slimboard {
         String last = ChatColor.getLastColors(s);
         if(last == null)
             return "";
+        System.out.println(last);
         return last;
     }
 
@@ -106,13 +123,13 @@ public class Slimboard {
 
         ArrayList<String> parts = new ArrayList<>();
 
-        if(ChatColor.stripColor(s).length() > 15)
+        if(ChatColor.stripColor(s).length() > 16)
         {
-            parts.add(s.substring(0, 15));
+            parts.add(s.substring(0, 16));
 
-            String s2 = s.substring(15, s.length());
-            if(s2.length() > 15)
-                s2 = s2.substring(0, 15);
+            String s2 = s.substring(16, s.length());
+            if(s2.length() > 16)
+                s2 = s2.substring(0, 16);
             parts.add(s2);
         } else {
             parts.add(s);
