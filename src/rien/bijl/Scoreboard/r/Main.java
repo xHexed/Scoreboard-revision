@@ -1,5 +1,6 @@
 package rien.bijl.Scoreboard.r;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -25,6 +26,7 @@ public class Main extends JavaPlugin {
     private void init()
     {
         Session.plugin = this;
+        Session.isUpToDate("14754");
         ConfigControl.get().createDataFiles();
         empty = getServer().getScoreboardManager().getNewScoreboard();
 
@@ -33,6 +35,8 @@ public class Main extends JavaPlugin {
         loadBoards();
 
         new Metrics(this);
+
+        finished();
     }
 
     private void autoloadDependencies()
@@ -75,6 +79,16 @@ public class Main extends JavaPlugin {
         apps.put(board, app);
         Session.plugin.getLogger().info("Loaded app handler for board: " + board);
         app.isdefault = isdefault;
+    }
+
+    public static void finished()
+    {
+        System.out.println("\n\n\n     _______.  ______   ______   .______       _______ .______     ______        ___      .______       _______  \n    /       | /      | /  __  \\  |   _  \\     |   ____||   _  \\   /  __  \\      /   \\     |   _  \\     |       \\ \n   |   (----`|  ,----\'|  |  |  | |  |_)  |    |  |__   |  |_)  | |  |  |  |    /  ^  \\    |  |_)  |    |  .--.  |\n    \\   \\    |  |     |  |  |  | |      /     |   __|  |   _  <  |  |  |  |   /  /_\\  \\   |      /     |  |  |  |\n.----)   |   |  `----.|  `--\'  | |  |\\  \\----.|  |____ |  |_)  | |  `--\'  |  /  _____  \\  |  |\\  \\----.|  \'--\'  |\n|_______/     \\______| \\______/  | _| `._____||_______||______/   \\______/  /__/     \\__\\ | _| `._____||_______/ \n              "
+               +  "\nThanks for using Scoreboard-revision! This is a community ran project that takes a lot of time to maintain.\n" +
+                        "Please consider leaving a 5/5 review if you like using our plugin!\n\n- HelloitsRien, Author\nScoreboard version: " + Session.plugin.getDescription().getVersion() +
+        " (" + (Session.isuptodate ? "UP TO DATE" : "OUTDATED") + ")\n\n");
+
+        System.out.println();
     }
 
 }
