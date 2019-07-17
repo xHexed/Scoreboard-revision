@@ -23,7 +23,7 @@ public class App extends BukkitRunnable {
     public ArrayList<ScoreboardHolder> holders = new ArrayList<>();
     public static boolean longline = false;
     public String board;
-    public boolean isdefault = false;
+    public boolean isdefault = true;
 
     public App(String board)
     {

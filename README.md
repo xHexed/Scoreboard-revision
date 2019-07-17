@@ -1,5 +1,3 @@
-# Highly unstable
-
 # Scoreboard-revision
 Scoreboard-r is a rewrite of my original Scoreboard plugin
 ## What is this?

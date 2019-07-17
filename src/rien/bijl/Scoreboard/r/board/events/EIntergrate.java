@@ -23,7 +23,8 @@ public class EIntergrate implements Listener {
     @EventHandler
     public void Intergrate(PlayerJoinEvent e)
     {
-        if(app.isCancelled() || !app.isdefault) return;
+
+        if(app == null || !app.isdefault) return;
         if(e.getPlayer().isOp() && !Session.isuptodate)
             e.getPlayer().sendMessage(Func.color("&cYou are running an outdated version of Scoreboard, please update as soon as possible for performance gain, security- or bugfixes."));
         new ScoreboardHolder(app, e.getPlayer());

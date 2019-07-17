@@ -83,10 +83,8 @@ public class Main extends JavaPlugin {
 
     public static void finished()
     {
-        System.out.println("\n\n\n     _______.  ______   ______   .______       _______ .______     ______        ___      .______       _______  \n    /       | /      | /  __  \\  |   _  \\     |   ____||   _  \\   /  __  \\      /   \\     |   _  \\     |       \\ \n   |   (----`|  ,----\'|  |  |  | |  |_)  |    |  |__   |  |_)  | |  |  |  |    /  ^  \\    |  |_)  |    |  .--.  |\n    \\   \\    |  |     |  |  |  | |      /     |   __|  |   _  <  |  |  |  |   /  /_\\  \\   |      /     |  |  |  |\n.----)   |   |  `----.|  `--\'  | |  |\\  \\----.|  |____ |  |_)  | |  `--\'  |  /  _____  \\  |  |\\  \\----.|  \'--\'  |\n|_______/     \\______| \\______/  | _| `._____||_______||______/   \\______/  /__/     \\__\\ | _| `._____||_______/ \n              "
-               +  "\nThanks for using Scoreboard-revision! This is a community ran project that takes a lot of time to maintain.\n" +
-                        "Please consider leaving a 5/5 review if you like using our plugin!\n\n- HelloitsRien, Author\nScoreboard version: " + Session.plugin.getDescription().getVersion() +
-        " (" + (Session.isuptodate ? "UP TO DATE" : "OUTDATED") + ")\n\n");
+        System.out.println("Scoreboard is online!. Scoreboard version: " + Session.plugin.getDescription().getVersion() +
+        " (" + (Session.isuptodate ? "UP TO DATE" : "OUTDATED") + ")");
 
         System.out.println();
     }

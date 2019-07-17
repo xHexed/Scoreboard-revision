@@ -23,7 +23,7 @@ public class EDeintergrate implements Listener {
     @EventHandler
     public void Deintergrate(PlayerQuitEvent e)
     {
-        if(app.isCancelled()) return;
+        if(app == null) return;
         app.unregisterHolder(e.getPlayer());
         e.getPlayer().setScoreboard(Main.empty);
     }
