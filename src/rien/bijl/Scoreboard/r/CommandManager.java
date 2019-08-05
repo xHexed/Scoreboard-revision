@@ -38,7 +38,7 @@ public class CommandManager implements CommandExecutor {
                         Main.loadBoards();
                         Func.smsg(player, "Scoreboard reloaded");
                     }
-                } else {
+                }  else {
                     Func.msg(player,"Unknown command!");
                     help(player);
                 }

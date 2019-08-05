@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import rien.bijl.Scoreboard.r.board.App;
+import rien.bijl.Scoreboard.r.board.WorldManager;
 import rien.bijl.Scoreboard.r.util.ConfigControl;
 
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class Main extends JavaPlugin {
         init();
     }
 
+    /**
+     * Initiate the plugin
+     */
     private void init()
     {
         Session.plugin = this;
@@ -36,9 +40,14 @@ public class Main extends JavaPlugin {
 
         new Metrics(this);
 
+        new WorldManager().runTaskTimer(this, 20L, 40L);
+
         finished();
     }
 
+    /**
+     * Load in dependencies
+     */
     private void autoloadDependencies()
     {
         for(String dependency : Session.dependencies)
@@ -46,11 +55,17 @@ public class Main extends JavaPlugin {
                 Session.enabled_dependencies.add(dependency);
     }
 
+    /**
+     * Create the commands
+     */
     private void setupCommands()
     {
         getCommand("sb").setExecutor(new CommandManager());
     }
 
+    /**
+     * Load in all board drivers
+     */
     public static void loadBoards()
     {
         newApp("board", true); // Default board
@@ -63,6 +78,9 @@ public class Main extends JavaPlugin {
         }
     }
 
+    /**
+     * Unload all board drivers
+     */
     public static void disolveBoards()
     {
         for(App app : apps.values())
@@ -70,6 +88,11 @@ public class Main extends JavaPlugin {
         apps.clear();
     }
 
+    /**
+     * Construct a new app
+     * @param board
+     * @param isdefault
+     */
     public static void newApp(String board, boolean isdefault)
     {
         App app = new App(board);
@@ -81,9 +104,12 @@ public class Main extends JavaPlugin {
         app.isdefault = isdefault;
     }
 
+    /**
+     * Log to the console that we're done
+     */
     public static void finished()
     {
-        System.out.println("Scoreboard is online!. Scoreboard version: " + Session.plugin.getDescription().getVersion() +
+        System.out.println("Scoreboard is online! Scoreboard version: " + Session.plugin.getDescription().getVersion() +
         " (" + (Session.isuptodate ? "UP TO DATE" : "OUTDATED") + ")");
 
         System.out.println();

@@ -25,28 +25,32 @@ public class App extends BukkitRunnable {
     public String board;
     public boolean isdefault = true;
 
+    /**
+     * Construct a new board driver
+     * @param board
+     */
     public App(String board)
     {
         // conf
-        App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline");
-        this.board = board;
+        App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline"); // Are we in longline?
+        this.board = board; // What is the current board?
 
         //Events
-        Session.plugin.getServer().getPluginManager().registerEvents(new EIntergrate(this), Session.plugin);
-        Session.plugin.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Session.plugin);
+        Session.plugin.getServer().getPluginManager().registerEvents(new EIntergrate(this), Session.plugin); // Join event
+        Session.plugin.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Session.plugin); // Quit event
 
         // Setup title row
-        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board + ".title").getStringList("liner");
-        int interval = ConfigControl.get().gc("settings").getInt(board + ".title.interval");
-        title = new Row((ArrayList<String>) lines, interval);
+        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board + ".title").getStringList("liner"); // Get the lines
+        int interval = ConfigControl.get().gc("settings").getInt(board + ".title.interval"); // Get the intervals
+        title = new Row((ArrayList<String>) lines, interval); // Create the title row!
 
-        for(int i = 1; i<200; i++)
+        for(int i = 1; i<200; i++) // Loop over all lines
         {
-            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection(board + ".rows." + i);
-            if(null != section)
+            ConfigurationSection section = ConfigControl.get().gc("settings").getConfigurationSection(board + ".rows." + i); // Get their rows
+            if(null != section) // Is the section null?
             {
-                Row row = new Row((ArrayList<String>)section.getStringList("liner"), section.getInt("interval"));
-                rows.add(row);
+                Row row = new Row((ArrayList<String>)section.getStringList("liner"), section.getInt("interval")); // Create a new row
+                rows.add(row); // Add this line to the row list
             }
         }
 
@@ -55,24 +59,46 @@ public class App extends BukkitRunnable {
 
     }
 
+    /**
+     * Get all the rows
+     * @return
+     */
     public ArrayList<Row> getRows()
     {
         return rows;
     }
 
+    /**
+     * Ge the title
+      * @return
+     */
     public Row getTitle()
     {
         return title;
     }
 
+    /**
+     * Register a scoreboardholder
+     * @param holder
+     */
     public void registerHolder(ScoreboardHolder holder)
     {
         holders.add(holder);
     }
+
+    /**
+     * Unregister a holder
+     * @param holder
+     */
     public void unregisterHolder(ScoreboardHolder holder)
     {
         holders.remove(holder);
     }
+
+    /**
+     * Unregister a holder via player
+     * @param player
+     */
     public void unregisterHolder(Player player)
     {
         for(ScoreboardHolder holder : holders)

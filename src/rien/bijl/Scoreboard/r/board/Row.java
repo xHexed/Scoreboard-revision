@@ -21,6 +21,11 @@ public class Row {
     public boolean placeholders = false;
     public boolean active = false;
 
+    /**
+     * Construct the row
+     * @param lines
+     * @param interval
+     */
     public Row(ArrayList<String> lines, int interval)
     {
         this.lines = lines;
@@ -43,6 +48,9 @@ public class Row {
 
     private int count = 0;
 
+    /**
+     * Update a line
+     */
     public void update()
     {
         if(static_line) return;
@@ -60,6 +68,10 @@ public class Row {
     }
 
 
+    /**
+     * Get  the last animated line
+     * @return
+     */
     public String getLine() { return this.line; }
 
 }

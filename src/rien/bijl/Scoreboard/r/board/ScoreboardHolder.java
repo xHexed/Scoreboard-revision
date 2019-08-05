@@ -1,6 +1,7 @@
 package rien.bijl.Scoreboard.r.board;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import rien.bijl.Scoreboard.r.Main;
 import rien.bijl.Scoreboard.r.Session;
@@ -18,9 +19,15 @@ public class ScoreboardHolder {
 
     private App app;
     public Player player;
+    private boolean disabled = false;
 
     private Slimboard slim;
 
+    /**
+     * Construct a new holder
+     * @param app
+     * @param player
+     */
     public ScoreboardHolder(App app, Player player)
     {
         this.app = app;
@@ -31,8 +38,23 @@ public class ScoreboardHolder {
         app.registerHolder(this);
     }
 
+    /**
+     * Update the holder and all the rows
+     */
     public void update()
     {
+
+        if(Session.disabled_players.contains(this.player))
+        {
+            if(!disabled)
+                this.player.setScoreboard(Main.empty);
+            disabled = true;
+            return;
+        } else if(Session.re_enable_players.contains(this.player)) {
+            disabled = false;
+            this.player.setScoreboard(this.slim.board);
+            Session.re_enable_players.remove(this.player);
+        }
 
         slim.setTitle(app.getTitle().getLine());
 

@@ -6,7 +6,7 @@
 #
 # Scoreboard-r by Rien Bijl
 # rep: github : RienBijl/Scoreboard-revision
-# v: 1.1 RELEASE
+# v: 1.4.2 RELEASE
 
 settings:
   # Safe-mode determines if scoreboard is synchronized with the server (true) or asynchronized (false)
@@ -17,6 +17,10 @@ settings:
   # true: you can use 128 characters per line (1.13 and up)
   # false: you can use 32 characters per line (1.12 and down)
   longline: false
+
+# In what worlds should we disable scoreboard?
+disabled-worlds:
+  - 'non_existant_world'
 
 board:
   title:
