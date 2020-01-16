@@ -14,7 +14,7 @@ import rien.bijl.Scoreboard.r.board.ScoreboardHolder;
 public class onCombat implements Listener {
 
     @EventHandler
-    public void onCombat(EntityDamageByEntityEvent e)
+    public void onEntityCombat(EntityDamageByEntityEvent e)
     {
         if(e.getDamager() instanceof Player)
         {

@@ -1,7 +1,5 @@
 package rien.bijl.Scoreboard.r.board;
 
-import org.bukkit.ChatColor;
-import rien.bijl.Scoreboard.r.Main;
 import rien.bijl.Scoreboard.r.util.Func;
 
 import java.util.ArrayList;
@@ -23,8 +21,8 @@ public class Row {
 
     /**
      * Construct the row
-     * @param lines
-     * @param interval
+     * @param lines a list of lines
+     * @param interval update time in ticks
      */
     public Row(ArrayList<String> lines, int interval)
     {
@@ -34,13 +32,14 @@ public class Row {
         if(lines.size() == 1)
             static_line = true;
         for(String line : lines)
-            if(line.contains("%")) placeholders = true;
+            if (line.contains("%")) {
+                placeholders = true;
+                break;
+            }
+
 
         if(static_line)
-            if(lines.size() < 1)
-                line = "";
-            else
-                line = Func.color(lines.get(0));
+            line = Func.color(lines.get(0));
 
 
         line = Func.color(lines.get(0));
@@ -70,7 +69,7 @@ public class Row {
 
     /**
      * Get  the last animated line
-     * @return
+     * @return the line
      */
     public String getLine() { return this.line; }
 

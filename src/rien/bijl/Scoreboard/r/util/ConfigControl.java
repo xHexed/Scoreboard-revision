@@ -3,10 +3,10 @@ package rien.bijl.Scoreboard.r.util;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import rien.bijl.Scoreboard.r.Main;
 import rien.bijl.Scoreboard.r.Session;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 /**
@@ -36,7 +36,7 @@ public class ConfigControl {
     public void createDataFiles()
     {
 
-        if(!Session.plugin.getDataFolder().exists())
+        if (!Session.plugin.getDataFolder().exists())
             Session.plugin.getDataFolder().mkdirs();
 
 
@@ -68,7 +68,7 @@ public class ConfigControl {
         if(needCopyDefaults)
         {
             try {
-                Reader defConfigStream = new InputStreamReader(ConfigControl.class.getResourceAsStream("/" + name + ".yml"), "UTF-8");
+                Reader defConfigStream = new InputStreamReader(ConfigControl.class.getResourceAsStream("/" + name + ".yml"), StandardCharsets.UTF_8);
                 PrintWriter writer = new PrintWriter(f, "UTF-8");
                 writer.print(read(defConfigStream));
                 writer.close();
@@ -98,14 +98,13 @@ public class ConfigControl {
 
     public String read(Reader r)
             throws IOException {
-        Reader initialReader = r;
         char[] arr = new char[8 * 1024];
         StringBuilder buffer = new StringBuilder();
         int numCharsRead;
-        while ((numCharsRead = initialReader.read(arr, 0, arr.length)) != -1) {
+        while ((numCharsRead = r.read(arr, 0, arr.length)) != -1) {
             buffer.append(arr, 0, numCharsRead);
         }
-        initialReader.close();
+        r.close();
         return buffer.toString();
     }
 

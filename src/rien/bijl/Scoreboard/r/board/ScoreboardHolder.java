@@ -1,19 +1,14 @@
 package rien.bijl.Scoreboard.r.board;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import rien.bijl.Scoreboard.r.Main;
 import rien.bijl.Scoreboard.r.Session;
-import rien.bijl.Scoreboard.r.board.App;
-import rien.bijl.Scoreboard.r.board.Row;
 import rien.bijl.Scoreboard.r.board.slimboard.Slimboard;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Rien on 22-10-2018.
+ * Updated by xHexed on 1-17-2020.
  */
 public class ScoreboardHolder {
 
@@ -25,8 +20,8 @@ public class ScoreboardHolder {
 
     /**
      * Construct a new holder
-     * @param app
-     * @param player
+     * @param app an scoreboard app....
+     * @param player the targeting player
      */
     public ScoreboardHolder(App app, Player player)
     {
@@ -59,7 +54,6 @@ public class ScoreboardHolder {
         slim.setTitle(app.getTitle().getLine());
 
         int count = 0;
-        HashMap<Integer, String> lines = new HashMap<>();
         for(Row row : app.getRows())
         {
             String line = row.getLine();

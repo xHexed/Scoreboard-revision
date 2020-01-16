@@ -1,15 +1,17 @@
 package rien.bijl.Scoreboard.r;
 
 import org.bukkit.entity.Player;
-
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+ */
 import java.util.ArrayList;
 
 /**
  * Created by Rien on 3-12-2018.
+ * Edited by xHexed on 1-17-2020
  */
 public class Session {
 
@@ -22,16 +24,16 @@ public class Session {
     public static Main plugin = null;
 
     // Bools
-    public static boolean isuptodate = false;
+    // public static boolean isuptodate = false;
 
     // Blocked users
     public static ArrayList<Player> disabled_players = new ArrayList<>();
     public static ArrayList<Player> re_enable_players = new ArrayList<>();
 
-    /**
-     * Are we up to date?
-     * @param resourceId
-     */
+    /*
+    Are we up to date?
+    "No, rip scoreboard-r 2019-2020" - xHexed
+
     public static void isUpToDate(String resourceId) {
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(
@@ -53,5 +55,5 @@ public class Session {
             isuptodate =  false;
         }
     }
-
+    */
 }

@@ -1,46 +1,44 @@
 package rien.bijl.Scoreboard.r.board.slimboard;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scoreboard.*;
-import rien.bijl.Scoreboard.r.Main;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 import rien.bijl.Scoreboard.r.Session;
 import rien.bijl.Scoreboard.r.board.App;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Created by Rien on 23-10-2018.
+ * Updated by xHexed on 1-17-2020
  */
 public class Slimboard {
 
     private Player player;
-    private Plugin plugin;
     public Scoreboard board;
     private Objective objective;
-    private int linecount;
 
     private HashMap<Integer, String> cache = new HashMap<>();
 
     /**
      * Construct the board
-     * @param plugin
-     * @param player
-     * @param linecount
+     * @param plugin the plugin's instance
+     * @param player the targeted player
+     * @param linecount get total lines
      */
     public Slimboard(Plugin plugin, Player player, int linecount)
     {
         this.player = player;
-        this.plugin = plugin;
-        this.linecount = linecount;
-        this.board = this.plugin.getServer().getScoreboardManager().getNewScoreboard();
-        this.objective = this.board.registerNewObjective("sb1", "sb2");
+        this.board = Objects.requireNonNull(plugin.getServer().getScoreboardManager()).getNewScoreboard();
+        this.objective = this.board.registerNewObjective("sb1", "sb2", "...");
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        this.objective.setDisplayName("...");
 
         int score = linecount;
         for(int i = 0; i < linecount;i++) // Loop through the lines
@@ -58,7 +56,7 @@ public class Slimboard {
 
     /**
      * Set the board title
-     * @param string
+     * @param string the title's name
      */
     public void setTitle(String string)
     {
@@ -69,30 +67,31 @@ public class Slimboard {
             string = PlaceholderAPI.setPlaceholders(player, string); // Run placeholders!
          }
 
-        if(cache.containsKey(-1) && cache.get(-1) == string) return; // Is it in cache?
-        if(cache.containsKey(-1)) cache.remove(-1); // Remove it from cache, it is different!
+        if(cache.containsKey(-1) && cache.get(-1).equals(string)) return; // Is it in cache?
+        cache.remove(-1); // Remove it from cache, it is different!
         cache.put(-1, string); // Put this in the cache!
         objective.setDisplayName(string); // And set the title
     }
 
     /**
      * Set a specific line
-     * @param line
-     * @param string
+     * @param line the line's vaule
+     * @param string the line's string
      */
     public void setLine(int line, String string)
     {
         Team t = board.getTeam((line) + ""); // Get the team we use
         if(string == null) string = ""; // Line null? No problem, make it empty!
 
-        if(cache.containsKey(line) && cache.get(line) == string) return; // The line hasn't updated?
-        if(cache.containsKey(line)) cache.remove(line); // Line has updated, remove it from cache!
+        if(cache.containsKey(line) && cache.get(line).equals(string)) return; // The line hasn't updated?
+        cache.remove(line); // Line has updated, remove it from cache!
         cache.put(line, string); // Put the new line in the cache
 
         if(App.longline) string = prep(string); else string = prepForShortline(string); // Prepare the string to preserve colors
-        ArrayList<String> parts = null;
+        ArrayList<String> parts;
         if(App.longline) parts = convertIntoPieces(string, 64); else parts = convertIntoPieces(string, 16); // Convert it into pieces!
 
+        assert t != null;
         t.setPrefix(fixAnyIssues(parts.get(0))); // Set the first
         t.setSuffix(fixAnyIssues(parts.get(1))); // Set the scond
     }
@@ -119,7 +118,7 @@ public class Slimboard {
 
     private String prep(String color)
     {
-        ArrayList<String> parts = null;
+        ArrayList<String> parts;
         if(App.longline) parts = convertIntoPieces(color, 64); else parts = convertIntoPieces(color, 15);
             return parts.get(0) + "§f" +  getLastColor(parts.get(0)) + parts.get(1);
     }
@@ -134,12 +133,8 @@ public class Slimboard {
         return color;
     }
 
-    private String getLastColor(String s)
-    {
-        String last = ChatColor.getLastColors(s);
-        if(last == null)
-            return "";
-        return last;
+    private String getLastColor(String s) {
+        return ChatColor.getLastColors(s);
     }
 
     private ArrayList<String> convertIntoPieces(String s, int allowed_line_size)
@@ -150,7 +145,7 @@ public class Slimboard {
         {
             parts.add(s.substring(0, allowed_line_size));
 
-            String s2 = s.substring(allowed_line_size, s.length());
+            String s2 = s.substring(allowed_line_size);
             if(s2.length() > allowed_line_size)
                 s2 = s2.substring(0, allowed_line_size);
             parts.add(s2);

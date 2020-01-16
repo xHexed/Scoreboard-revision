@@ -7,23 +7,23 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
-          <root url="jar://C:/Ontwikkeling/Minecraft servers/1.13.2/plugins/PlaceholderAPI-2.10.3.jar!/" />
+          <root url="jar://C:/Prison/plugins/PlaceholderAPI-2.10.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
-          <root url="jar://C:/Ontwikkeling/Minecraft servers/1.13.2/spigot.jar!/" />
+          <root url="jar://C:/Intel/server/spigot-1.13.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/Ontwikkeling/Minecraft servers/1.13.2/spigot.jar!/" />
+          <root url="jar://C:/Intel/server/spigot-1.13.2.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

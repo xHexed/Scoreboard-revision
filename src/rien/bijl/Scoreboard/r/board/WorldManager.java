@@ -7,7 +7,6 @@ import rien.bijl.Scoreboard.r.Session;
 import rien.bijl.Scoreboard.r.util.ConfigControl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class WorldManager extends BukkitRunnable {
 
@@ -15,11 +14,11 @@ public class WorldManager extends BukkitRunnable {
 
     public WorldManager()
     {
-        if(ConfigControl.get().gc("settings").getStringList("disabled-worlds") != null)
-            for(String world : ConfigControl.get().gc("settings").getStringList("disabled-worlds"))
-            {
-                disabled_worlds.add(world.toLowerCase().trim());
-            }
+        ConfigControl.get().gc("settings").getStringList("disabled-worlds");
+        for(String world : ConfigControl.get().gc("settings").getStringList("disabled-worlds"))
+        {
+            disabled_worlds.add(world.toLowerCase().trim());
+        }
     }
 
     @Override

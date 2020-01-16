@@ -1,6 +1,6 @@
 package rien.bijl.Scoreboard.r;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+//import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -9,6 +9,7 @@ import rien.bijl.Scoreboard.r.board.WorldManager;
 import rien.bijl.Scoreboard.r.util.ConfigControl;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Created by Rien on 21-10-2018.
@@ -30,9 +31,9 @@ public class Main extends JavaPlugin {
     private void init()
     {
         Session.plugin = this;
-        Session.isUpToDate("14754");
+        //Session.isUpToDate("14754");
         ConfigControl.get().createDataFiles();
-        empty = getServer().getScoreboardManager().getNewScoreboard();
+        empty = Objects.requireNonNull(getServer().getScoreboardManager()).getNewScoreboard();
 
         autoloadDependencies();
         setupCommands();
@@ -60,7 +61,7 @@ public class Main extends JavaPlugin {
      */
     private void setupCommands()
     {
-        getCommand("sb").setExecutor(new CommandManager());
+        Objects.requireNonNull(getCommand("sb")).setExecutor(new CommandManager());
     }
 
     /**
@@ -90,13 +91,13 @@ public class Main extends JavaPlugin {
 
     /**
      * Construct a new app
-     * @param board
-     * @param isdefault
+     * @param board the plugin's board
+     * @param isdefault check if the app is in default mode?
      */
     public static void newApp(String board, boolean isdefault)
     {
         App app = new App(board);
-        if(ConfigControl.get().gc("settings").getBoolean("settings.safe-mode"))
+        if (ConfigControl.get().gc("settings").getBoolean("settings.safe-mode"))
             app.runTaskTimer(Session.plugin, 1L, 1L);
         else app.runTaskTimerAsynchronously(Session.plugin, 1L, 1L);
         apps.put(board, app);
@@ -110,9 +111,7 @@ public class Main extends JavaPlugin {
     public static void finished()
     {
         System.out.println("Scoreboard is online! Scoreboard version: " + Session.plugin.getDescription().getVersion() +
-        " (" + (Session.isuptodate ? "UP TO DATE" : "OUTDATED") + ")");
-
-        System.out.println();
+        " ( ? )");
     }
 
 }

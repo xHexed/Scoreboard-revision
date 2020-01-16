@@ -3,7 +3,6 @@ package rien.bijl.Scoreboard.r.board;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import rien.bijl.Scoreboard.r.Main;
 import rien.bijl.Scoreboard.r.Session;
 import rien.bijl.Scoreboard.r.board.events.EDeintergrate;
 import rien.bijl.Scoreboard.r.board.events.EIntergrate;
@@ -11,6 +10,7 @@ import rien.bijl.Scoreboard.r.util.ConfigControl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Rien on 21-10-2018.
@@ -19,7 +19,6 @@ public class App extends BukkitRunnable {
 
     private Row title;
     private ArrayList<Row> rows = new ArrayList<>();
-    private ArrayList<Player> children = new ArrayList<>();
     public ArrayList<ScoreboardHolder> holders = new ArrayList<>();
     public static boolean longline = false;
     public String board;
@@ -27,11 +26,11 @@ public class App extends BukkitRunnable {
 
     /**
      * Construct a new board driver
-     * @param board
+     * @param board the scoreboard
      */
     public App(String board)
     {
-        // conf
+        // Config
         App.longline = ConfigControl.get().gc("settings").getBoolean("settings.longline"); // Are we in longline?
         this.board = board; // What is the current board?
 
@@ -40,7 +39,7 @@ public class App extends BukkitRunnable {
         Session.plugin.getServer().getPluginManager().registerEvents(new EDeintergrate(this), Session.plugin); // Quit event
 
         // Setup title row
-        List<String> lines = ConfigControl.get().gc("settings").getConfigurationSection(board + ".title").getStringList("liner"); // Get the lines
+        List<String> lines = Objects.requireNonNull(ConfigControl.get().gc("settings").getConfigurationSection(board + ".title")).getStringList("liner"); // Get the lines
         int interval = ConfigControl.get().gc("settings").getInt(board + ".title.interval"); // Get the intervals
         title = new Row((ArrayList<String>) lines, interval); // Create the title row!
 
@@ -55,13 +54,13 @@ public class App extends BukkitRunnable {
         }
 
         // Register already joined players
-        if(board == "board") for(Player player : Session.plugin.getServer().getOnlinePlayers()) new ScoreboardHolder(this, player);
+        if(board.equals("board")) for(Player player : Session.plugin.getServer().getOnlinePlayers()) new ScoreboardHolder(this, player);
 
     }
 
     /**
      * Get all the rows
-     * @return
+     * @return the list of rows
      */
     public ArrayList<Row> getRows()
     {
@@ -70,7 +69,7 @@ public class App extends BukkitRunnable {
 
     /**
      * Ge the title
-      * @return
+      * @return the scoreboard's title
      */
     public Row getTitle()
     {
@@ -79,7 +78,7 @@ public class App extends BukkitRunnable {
 
     /**
      * Register a scoreboardholder
-     * @param holder
+     * @param holder the player using the scoreboard
      */
     public void registerHolder(ScoreboardHolder holder)
     {
@@ -87,17 +86,8 @@ public class App extends BukkitRunnable {
     }
 
     /**
-     * Unregister a holder
-     * @param holder
-     */
-    public void unregisterHolder(ScoreboardHolder holder)
-    {
-        holders.remove(holder);
-    }
-
-    /**
      * Unregister a holder via player
-     * @param player
+     * @param player the player using the scoreboard
      */
     public void unregisterHolder(Player player)
     {
